@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Mvvm.DataAnnotations;
+using DXApplication3.Models;
 
 namespace DXApplication3.ViewModels
 {
@@ -15,14 +17,12 @@ namespace DXApplication3.ViewModels
             get { return this.GetService<IMessageBoxService>(); }
         }
 
-
-        public List<string> Tables = new List<string> { "Abocon", "Abotrn", "Addrclen" };
-        public virtual string Name { get; set; }
+        public virtual TableList TableList { get; set; }
 
         //We recommend that you not use public constructors to prevent creating the View Model without the ViewModelSource 
         protected MainViewModel()
         {
-            Name = "Martin";
+            TableList = TableList.CreateWithData();
         }
 
         //This is a helper method that uses the ViewModelSource class for creating a LoginViewModel instance 
@@ -35,12 +35,16 @@ namespace DXApplication3.ViewModels
         {
             if (ViewModelBase.IsInDesignMode) return true;
 
-            return Tables.Count> 0;
+            return TableList.Any(x => x.Selected);
         }
 
         public void CreateRepos()
         {
-            MessageBoxService.Show("here");
+            foreach (var table in TableList.Where(x => x.Selected))
+            {
+                ClassWriter.CreateClassForDbTable(table.Name);
+            }
+
         }
     }
 }

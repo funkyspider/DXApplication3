@@ -53,6 +53,8 @@ namespace DXApplication3
 
         public static void CreateClassForDbTable(string tableName)
         {
+            tableName = tableName.Trim();
+
             var newClass = ClassLines.Select(s => s.Replace("%classname%", tableName)).ToList();
             TextWriter tw = new StreamWriter($"c:\\temp\\{tableName}Controller.cs");
 
