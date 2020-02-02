@@ -23,7 +23,16 @@
                          VerticalAlignment="Top" Width="75" IsEnabled="True"
                          Command="{Binding CreateReposCommand}" >
         </dx:SimpleButton>
-    
+
+        <dx:SimpleButton Name="BtnGo1" Content="Go" 
+                         HorizontalAlignment="Left" Height="18" Margin="199,66,0,0" 
+                         VerticalAlignment="Top" Width="75" IsEnabled="True" RenderTransformOrigin="0.472,2.378">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="Click" Command="{Binding CreateReposCommand}"/>
+            </dxmvvm:Interaction.Behaviors>
+        </dx:SimpleButton>
+
+
         <dxe:MemoEdit Name="MemoTables" 
                       HorizontalAlignment="Left" 
                       Margin="10,10,0,0" 

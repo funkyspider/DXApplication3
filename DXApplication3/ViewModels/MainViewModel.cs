@@ -20,7 +20,6 @@ namespace DXApplication3.ViewModels
         public List<string> Tables = new List<string> { "Abocon", "Abotrn", "Addrclen" };
         public virtual string Name { get; set; }
 
-        // We recommend that you do not use public constructors to prevent creating a View Model instance without the ViewModelSource 
         public MainViewModel()
         {
             Name = "Martin";
@@ -28,7 +27,6 @@ namespace DXApplication3.ViewModels
             {
                 ClassWriter.CreateClassForDbTable(table);
             }
-            
         }
 
         public bool CanCreateRepos()
