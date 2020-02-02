@@ -8,30 +8,34 @@ using DevExpress.Mvvm.DataAnnotations;
 namespace DXApplication3.ViewModels
 {
     [POCOViewModel]
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel
     {
         public IMessageBoxService MessageBoxService
         {
             get { return this.GetService<IMessageBoxService>(); }
         }
 
-        public virtual string[] TableNames { get; set; }
 
         public List<string> Tables = new List<string> { "Abocon", "Abotrn", "Addrclen" };
         public virtual string Name { get; set; }
 
-        public MainViewModel()
+        //We recommend that you not use public constructors to prevent creating the View Model without the ViewModelSource 
+        protected MainViewModel()
         {
             Name = "Martin";
-            foreach (var table in Tables)
-            {
-                ClassWriter.CreateClassForDbTable(table);
-            }
+        }
+
+        //This is a helper method that uses the ViewModelSource class for creating a LoginViewModel instance 
+        public static MainViewModel Create()
+        {
+            return ViewModelSource.Create(() => new MainViewModel());
         }
 
         public bool CanCreateRepos()
         {
-            return TableNames.Length > 0;
+            if (ViewModelBase.IsInDesignMode) return true;
+
+            return Tables.Count> 0;
         }
 
         public void CreateRepos()

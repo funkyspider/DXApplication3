@@ -2,14 +2,11 @@
     x:Class="DXApplication3.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:DXApplication3.ViewModels"
-    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
-
-    <UserControl.DataContext>
-        <local:MainViewModel/>
-    </UserControl.DataContext>
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:viewModels="clr-namespace:DXApplication3.ViewModels"
+    DataContext="{dxmvvm:ViewModelSource Type={x:Type viewModels:MainViewModel}}">
 
     <dxmvvm:Interaction.Behaviors>
         <dx:DXMessageBoxService/>
@@ -36,7 +33,7 @@
                       HorizontalAlignment="Left" 
                       Margin="10,10,0,0" 
                       VerticalAlignment="Top" Width="167" Height="24"
-                      Text="{Binding TableNames, UpdateSourceTrigger=PropertyChanged}"/>
+                      EditValue="{Binding TableNames, UpdateSourceTrigger=PropertyChanged}"/>
 
         <dxe:TextEdit HorizontalAlignment="Left" 
                       Margin="10,39,0,0" 
