@@ -5,7 +5,6 @@
     xmlns:local="clr-namespace:DXApplication3.ViewModels"
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <UserControl.DataContext>
